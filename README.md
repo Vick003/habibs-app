@@ -1,4 +1,4 @@
-# real-world-nuxt
+# habibs-app
 
 > My brilliant Nuxt.js project
 
