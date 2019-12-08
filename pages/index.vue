@@ -1,6 +1,9 @@
 <template>
   <div>
     <Navigation />
+    <v-content>
+      <Hero />
+    </v-content>
   </div>
 </template>
 
