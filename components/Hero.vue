@@ -1,7 +1,7 @@
 <template>
   <v-img
-    height="100vh"
-    src="bmw-918408_1280.jpg"
+    height="100%"
+    src="white_bmw.jpg"
     class="white--text"
     >
     </v-img>

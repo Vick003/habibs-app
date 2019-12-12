@@ -41,7 +41,32 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios',
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    [
+      'nuxt-fire',
+      {
+        config: {
+          apiKey: "AIzaSyDmzt4zYJqF4LYk_q0KJ6Y6Vi7cDf2WzFc",
+          authDomain: "findcar-34b1a.firebaseapp.com",
+          databaseURL: "https://findcar-34b1a.firebaseio.com",
+          projectId: "findcar-34b1a",
+          storageBucket: "findcar-34b1a.appspot.com",
+          messagingSenderId: "858740610595",
+          appId: "1:858740610595:web:d79ce9ccf0549f757dc396",
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          functions: true,
+          storage: true,
+          // realtimeDb: true,
+          // messaging: true,
+          // performance: true,
+          // analytics: true,
+          // remoteConfig: true
+        }
+      }
+    ]
   ],
   /*
   ** Axios module configuration
