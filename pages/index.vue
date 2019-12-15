@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-app>
     <Navigation />
     <v-content>
       <Hero />
     </v-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
