@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-app>
         <Navigation />
         <v-content>
             <v-container>
@@ -20,49 +20,73 @@
                              <v-container>
                                  <v-row>
                                      <v-col cols="6">
-                                        <v-text-field label="Name" type="text" v-model='Name'></v-text-field>
+                                        <v-text-field label="Name" type="text" v-model='Name' />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Email" type="email" v-model='Email'></v-text-field>
+                                        <v-text-field label="Email" type="email" v-model='Email' />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Phone" type="text" v-model='Phone'></v-text-field>
+                                        <v-text-field label="Phone" type="text" v-model='Phone' />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="State" type="text" v-model='State'></v-text-field>
+                                        <v-autocomplete label="State" :items="states" v-model="State"/>
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Zip Code" type="text" v-model='Zipcode'></v-text-field>
+                                        <v-text-field label="Zip Code" type="text" v-model='Zipcode' />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Credit Score" type="text"></v-text-field>
+                                         <v-dialog
+                                            ref="dialog"
+                                            v-model="modal"
+                                            :return-value.sync="purchaseDate"
+                                            persistent
+                                            width="290px"
+                                        >
+                                            <template v-slot:activator="{ on }">
+                                            <v-text-field
+                                                v-model="purchaseDate"
+                                                label="Purchase Date"
+                                                readonly
+                                                v-on="on"
+                                            ></v-text-field>
+                                            </template>
+                                            <v-date-picker v-model="purchaseDate" scrollable>
+                                            <v-spacer></v-spacer>
+                                            <v-btn text color="primary" @click="modal = false">Cancel</v-btn>
+                                            <v-btn text color="primary" @click="$refs.dialog.save(purchaseDate)">OK</v-btn>
+                                            </v-date-picker>
+                                        </v-dialog>
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Down Payment" type="text"></v-text-field>
+                                        <v-text-field label="Credit Score" type="text" v-model="creditScore" />
+                                     </v-col>
+                                     <v-col cols="6">
+                                        <v-text-field label="Down Payment" type="text" v-model="downPayment" />
                                      </v-col>
                                     <v-col cols="6">
-                                        <v-text-field label="Asking Price" type="text"></v-text-field>
+                                        <v-text-field label="Asking Price" type="text" v-model="askingPrice" />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Year" type="text"></v-text-field>
+                                        <v-text-field label="Year" type="text" v-model="year" />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Make" type="text"></v-text-field>
+                                        <v-text-field label="Make" type="text" v-model="make" />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Model" type="text"></v-text-field>
+                                        <v-text-field label="Model" type="text" v-model="model" />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Color" type="text"></v-text-field>
+                                        <v-text-field label="Color" type="text" v-model="color" />
                                      </v-col>
                                      <v-col cols="6">
-                                        <v-text-field label="Max Miles Desired" type="text"></v-text-field>
+                                        <v-text-field label="Max Miles Accepted" type="text" v-model="maxMiles" />
                                      </v-col>
                                      <v-col cols="12">
                                           <v-textarea
                                                 solo
                                                 name="input-7-4"
                                                 label="Additional Vehicle Accessories/Features/Packages"
+                                                v-model="extras"
                                             ></v-textarea>
                                      </v-col>
                                      <v-col cols="12">
@@ -70,8 +94,9 @@
                                                 solo
                                                 name="input-7-4"
                                                 label="Additional Comments"
+                                                v-model="comments"
                                             ></v-textarea>
-                                     </v-col> 
+                                     </v-col>
                                  </v-row>
                                  <v-row>
                                      <v-spacer></v-spacer>
@@ -90,7 +115,7 @@
                 </v-row>
             </v-container>
         </v-content>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -106,7 +131,27 @@
                 Email: '',
                 Phone: '',
                 State: '',
-                Zipcode: ''
+                Zipcode: '',
+                states: [
+                    "Arizona",
+                    "California",
+                    "Hawaii",
+                    "Oregon",
+                    "Washington",
+                    "Nevada"
+                ],
+                purchaseDate: '',
+                modal: false,
+                extras: "",
+                comments: "",
+                creditScore: "",
+                downPayment: "",
+                askingPrice: "",
+                year: "",
+                make: "",
+                model: "",
+                color: "",
+                maxMiles: ""
             }
         },
 
